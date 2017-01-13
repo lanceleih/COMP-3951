@@ -10,11 +10,44 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Github?");
-            Console.WriteLine("YAS");
+            String s;
+            int num;
 
-            Console.ReadKey();
-            Console.WriteLine("NAH");
+            do
+            {
+                Console.WriteLine("Enter a number, foo.");
+                s = Console.ReadLine();
+                num = Convert.ToInt32(s);
+
+                for (int i = 0; i < num; i++)
+                {
+                    Console.WriteLine(fib(i));
+                }
+
+                Console.WriteLine("Continue? y or n");
+                s = Console.ReadLine();
+            } while (s != "n");
+            
+
+
+
+
+        }
+
+        static int fib(int n)
+        {
+
+            int a = 0;
+            int b = 1;
+            // In N steps compute Fibonacci sequence iteratively.
+            for (int i = 0; i < n; i++)
+            {
+                int temp = a;
+                a = b;
+                b = temp + b;
+            }
+            return a;
+
         }
     }
 }
