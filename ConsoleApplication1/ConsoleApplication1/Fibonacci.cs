@@ -28,10 +28,6 @@ namespace ConsoleApplication1
                 s = Console.ReadLine();
             } while (s != "n");
             
-
-
-
-
         }
 
         static int fib(int n)
