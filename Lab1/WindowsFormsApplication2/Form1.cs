@@ -10,14 +10,28 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication2
 {
-    public partial class Form1 : Form
+    /// <summary>
+    /// Class that creates a Windows Form with all the necessary
+    /// components to create a simple UI to calculate the Fibonacci
+    /// Sequence or the summation of a number.
+    /// </summary>
+    public partial class MathFunctions : Form
     {
-        // Heyyyy you.
-        public Form1()
+        /// <summary>
+        /// Constructor to create a MathFunction.
+        /// </summary>
+        public MathFunctions()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Checks which radiobutton is chosen and opens a message box
+        /// showing the result based on the number inside the textbox
+        /// and the radiobutton chosen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void calcButton_Click(object sender, EventArgs e)
         {
             int answer = 0;
@@ -33,6 +47,13 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// Performs the Fibonacci sequence. 
+        /// Returns a string showing the Fibonacci sequence up to
+        /// whatever number is chosen.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         private String fibSeq(int num)
         {
             String ans = "";
@@ -55,12 +76,17 @@ namespace WindowsFormsApplication2
             return ans;
         }
 
+        /// <summary>
+        /// Performs a summation of numbers up to the number chosen.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
         private int summation(int n)
         {
             int sum = 0;
             for(int i = 1; i <= n; i++)
             {
-                sum = sum + i * 1;
+                sum = sum + i;
             }
             return sum;
         }

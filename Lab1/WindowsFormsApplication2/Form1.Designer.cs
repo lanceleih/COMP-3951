@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication2
 {
-    partial class Form1
+    partial class MathFunctions
     {
         /// <summary>
         /// Required designer variable.
@@ -99,7 +99,7 @@
             this.calcButton.UseVisualStyleBackColor = true;
             this.calcButton.Click += new System.EventHandler(this.calcButton_Click);
             // 
-            // Form1
+            // MathFunctions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,8 +110,8 @@
             this.Controls.Add(this.sumButton);
             this.Controls.Add(this.fibButton);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "s";
+            this.Name = "MathFunctions";
+            this.Text = "MathFunctions";
             this.ResumeLayout(false);
             this.PerformLayout();
 
