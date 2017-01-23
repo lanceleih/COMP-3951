@@ -234,6 +234,7 @@ namespace Lab2
             button6.Enabled = true;
             button5.Enabled = true;
             DisplayBox.Focus();
+            panel2.Visible = true;
 
         }
         private void turn_OffCalculator()
@@ -257,6 +258,7 @@ namespace Lab2
             button7.Enabled = false;
             button6.Enabled = false;
             button5.Enabled = false;
+            panel2.Visible = false;
             awake = false;
 
         }

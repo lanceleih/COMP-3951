@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.ButtonOn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -306,10 +307,12 @@
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(773, 48);
+            this.panel2.BackgroundImage = global::Lab2.Properties.Resources.pizzadoge;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.Location = new System.Drawing.Point(785, 40);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(620, 601);
+            this.panel2.Size = new System.Drawing.Size(602, 601);
             this.panel2.TabIndex = 8;
             // 
             // Form1
@@ -320,7 +323,10 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.DisplayBox);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
