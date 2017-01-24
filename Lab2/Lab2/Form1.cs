@@ -512,17 +512,5 @@ namespace Lab2
             }
 
         }
-        //private void buttonAdd_Click(object sender, EventArgs e)
-        //{
-        //    SendKeys.Send("{ADD}");
-        //    result = float.Parse(DisplayBox.Text);
-        //    DisplayBox.Clear();
-        //    if (calculated == true)
-        //    {
-        //        calculated = false;
-        //    }
-        //}
-
-
     }
 }
