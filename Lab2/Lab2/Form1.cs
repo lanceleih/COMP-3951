@@ -458,6 +458,8 @@ namespace Lab2
         /// </summary>
         private void turn_OnCalculator()
         {
+            panel2.Visible = true;
+
             List<Control> list = new List<Control>();
 
             // Retrieve all controls and put into list
@@ -493,6 +495,7 @@ namespace Lab2
         /// </summary>
         private void turn_OffCalculator()
         {
+            panel2.Visible = false;
             List<Control> list = new List<Control>();
 
             // Retrieve all controls and put into the lsit
