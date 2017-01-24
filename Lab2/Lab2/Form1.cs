@@ -78,15 +78,7 @@ namespace Lab2
             
         }
 
-        /// <summary>
-        /// Purpose: 
-        /// Input:
-        /// Output:
-        /// Author:
-        /// Date:
-        /// Updated by:
-        /// Date:
-        /// </summary>
+
         private void calculate()
         {
             if (num == 0) //determine if there is an operation; return 0 if none.
@@ -119,17 +111,24 @@ namespace Lab2
             tmp = 0;
         }
 
-        /// <summary>
-        /// Purpose: 
-        /// Input:
-        /// Output:
-        /// Author:
-        /// Date:
-        /// Updated by:
-        /// Date:
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        //private void buttonEquals_Click(object sender, EventArgs e)
+        //{
+        //    // Calculate the value based on the operation and operand
+        //    calculate(float.Parse(DisplayBox.Text));
+        //    DisplayBox.Clear();
+        //    if (operation == "+" || operation == "-" || operation == "*" || operation == "/")
+        //    {
+        //        DisplayBox.Text += tmp.ToString();
+        //    }
+        //    else
+        //    {
+        //        DisplayBox.Text += result.ToString();
+        //    }
+        //    calculated = true;
+
+        //}
+
         private void buttonOpeartor_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -414,65 +413,116 @@ namespace Lab2
             }
         }
 
+        /// <summary>
+        /// Purpose: Turns on the calculator using on button and enabling the buttons
+        /// for use.
+        /// Input: object sender, EventArgs e
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Lancelei Herradura
+        /// Date: January 23, 2017
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonOn_Click(object sender, EventArgs e)
         {
             turn_OnCalculator();
         }
 
+        /// <summary>
+        /// Purpose: Turns off the calculator using button the off button and
+        /// disabling the buttons for use.
+        /// Input: object sender, EventArgs
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Lancelei Herradura
+        /// Date: January 23, 2017
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonOff_Click(object sender, EventArgs e)
         {
             turn_OffCalculator();
         }
 
+        /// <summary>
+        /// Purpose: Enables the buttons of the calculator while disabling the on button.
+        /// Input: void
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Lancelei Herradura
+        /// Date: January 23, 2017
+        /// </summary>
         private void turn_OnCalculator()
         {
-            DisplayBox.Text = "";
-            button0.Enabled = true;
-            button1.Enabled = true;
-            button2.Enabled = true;
-            button3.Enabled = true;
-            button4.Enabled = true;
-            buttonAdd.Enabled = true;
-            button13.Enabled = true;
-            button12.Enabled = true;
-            button11.Enabled = true;
-            ButtonC.Enabled = true;
-            ButtonOff.Enabled = true;
-            buttonEquals.Enabled = true;
-            button8.Enabled = true;
-            button9.Enabled = true;
-            ButtonCE.Enabled = true;
-            button7.Enabled = true;
-            button6.Enabled = true;
-            button5.Enabled = true;
-            DisplayBox.Focus();
-            panel2.Visible = true;
+            List<Control> list = new List<Control>();
+
+            // Retrieve all controls and put into list
+            GetAllControl(this, list);
+
+            // Enable all buttons, but disable the ButtonOn
+            foreach (Control control in list)
+            {
+                if (control.GetType() == typeof(Button))
+                {
+                    if (control != ButtonOn)
+                    {
+                        control.Enabled = true;
+                    } else
+                    {
+                        control.Enabled = false;
+                    }
+
+                }
+            }
 
         }
+
+        /// <summary>
+        /// Purpose: Disables all buttons, but the on button, to prevent the 
+        /// user from inputing any values onto the calculator.
+        /// Input: void
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Lancelei Herradura
+        /// Date: January 23, 2017
+        /// </summary>
         private void turn_OffCalculator()
         {
-            DisplayBox.Clear();
-            button0.Enabled = false;
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button3.Enabled = false;
-            button4.Enabled = false;
-            buttonAdd.Enabled = false;
-            button13.Enabled = false;
-            button12.Enabled = false;
-            button11.Enabled = false;
-            ButtonC.Enabled = false;
-            ButtonOff.Enabled = false;
-            buttonEquals.Enabled = false;
-            button8.Enabled = false;
-            button9.Enabled = false;
-            ButtonCE.Enabled = false;
-            button7.Enabled = false;
-            button6.Enabled = false;
-            button5.Enabled = false;
-            panel2.Visible = false;
-            awake = false;
+            List<Control> list = new List<Control>();
+
+            // Retrieve all controls and put into the lsit
+            GetAllControl(this, list);
+
+            // Disable all buttons, but the ButtonOn
+            foreach (Control control in list)
+            {
+                if (control.GetType() == typeof(Button))
+                {
+                    if(control != ButtonOn)
+                        control.Enabled = false;
+                    else
+                        control.Enabled = true;
+
+                }
+            }
 
         }
+        //private void buttonAdd_Click(object sender, EventArgs e)
+        //{
+        //    SendKeys.Send("{ADD}");
+        //    result = float.Parse(DisplayBox.Text);
+        //    DisplayBox.Clear();
+        //    if (calculated == true)
+        //    {
+        //        calculated = false;
+        //    }
+        //}
+
+
     }
 }
