@@ -20,8 +20,9 @@ namespace Lab2
         string operation = ""; // get operator
         //bool calculated = false;
         bool awake = false;
-        
-         
+        private List<Control> list = new List<Control>(); // list for form controls
+
+
         public Form1()
         {
             InitializeComponent();
@@ -400,6 +401,7 @@ namespace Lab2
 
         /// <summary>
         /// Purpose: Enables the buttons of the calculator while disabling the on button.
+        /// Also, reveals picture of a dog.
         /// Input: void
         /// Output: void
         /// Author: Benjamin Hao, Lancelei Herradura
@@ -409,8 +411,6 @@ namespace Lab2
         /// </summary>
         private void turn_OnCalculator()
         {
-            List<Control> list = new List<Control>();
-
             // Retrieve all controls and put into list
             GetAllControl(this, list);
 
@@ -426,7 +426,9 @@ namespace Lab2
                     {
                         control.Enabled = false;
                     }
-
+                } else if(control == panel2)
+                {
+                    control.Visible = true;
                 }
             }
 
@@ -434,7 +436,8 @@ namespace Lab2
 
         /// <summary>
         /// Purpose: Disables all buttons, but the on button, to prevent the 
-        /// user from inputing any values onto the calculator.
+        /// user from inputing any values onto the calculator. Gets rid of the
+        /// picture of the dog.
         /// Input: void
         /// Output: void
         /// Author: Benjamin Hao, Lancelei Herradura
@@ -444,8 +447,6 @@ namespace Lab2
         /// </summary>
         private void turn_OffCalculator()
         {
-            List<Control> list = new List<Control>();
-
             // Retrieve all controls and put into the lsit
             GetAllControl(this, list);
 
@@ -458,7 +459,9 @@ namespace Lab2
                         control.Enabled = false;
                     else
                         control.Enabled = true;
-
+                } else if(control == panel2)
+                {
+                    control.Visible = false;
                 }
             }
 
