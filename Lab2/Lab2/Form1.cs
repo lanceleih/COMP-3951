@@ -146,14 +146,8 @@ namespace Lab2
         /// <param name="e"></param>
         private void buttonOperator_Click(object sender, EventArgs e)
         {
-            if ((string)sender == "+" || (string)sender == "-"|| (string)sender == "*"|| (string)sender == "/")
-            {// if input by keyboard
-                operation = (string)sender;
-            } else
-            {//if input by button
                 Button button = (Button)sender;
                 operation = button.Text;
-            }
                 
             switch (operation)
             {
@@ -348,22 +342,22 @@ namespace Lab2
                     {
                         case '+':
                             tmp = float.Parse(DisplayBox.Text.ToString());
-                            buttonOperator_Click("+",e);
+                            operation = "+";
                             DisplayBox.SelectAll();
                             break;
                         case '-':
                             tmp = float.Parse(DisplayBox.Text.ToString());
-                            buttonOperator_Click("-", e);
+                            operation = "-";
                             DisplayBox.SelectAll();
                             break;
                         case '*':
                             tmp = float.Parse(DisplayBox.Text.ToString());
+                            operation = "*";
                             DisplayBox.SelectAll();
-                            buttonOperator_Click("*", e);
                             break;
                         case '/':
                             tmp = float.Parse(DisplayBox.Text.ToString());
-                            buttonOperator_Click("/", e);
+                            operation = "/";
                             DisplayBox.SelectAll();
                             break;
                         case '=':
@@ -373,10 +367,92 @@ namespace Lab2
                             break;
                     }
 
-                    // Stop the character from being entered into the control since it is non-numerical.
-                    e.Handled = true;
+
+                    switch (operation)
+                    {
+                        case "+":
+                            if (opt != 0 && opt != 1)
+                            {
+                                calculate();
+                            }
+                            opt = 1;
+                            if (num != 0) // check the operation times
+                            {
+                                if (tmp != 0)
+                                    result = result + tmp;
+                            }
+                            else
+                                result = tmp;
+                            num++;
+                            tmp = 0;
+                            DisplayBox.Text = result.ToString();
+                            break;
+                        case "-":
+                            if (opt != 0 && opt != 2)
+                            {
+                                calculate();
+                            }
+                            opt = 2;
+                            if (num != 0) // check the operation times
+                            {
+                                if (tmp != 0)
+                                    result = result - tmp;
+                            }
+                            else
+                                result = tmp;
+                            num++;
+                            tmp = 0;
+                            DisplayBox.Text = result.ToString();
+                            break;
+                        case "*":
+                            if (opt != 0 && opt != 3)
+                            {
+                                calculate();
+                            }
+                            opt = 3;
+                            if (num != 0) // check the operation times
+                            {
+                                if (tmp != 0)
+                                    result = result * tmp;
+                            }
+                            else
+                                result = tmp;
+                            num++;
+                            tmp = 0;
+                            DisplayBox.Text = result.ToString();
+                            break;
+                        case "/":
+                            if (opt != 0 && opt != 4)
+                            {
+                                calculate();
+                            }
+                            opt = 4;
+                            if (num != 0) // check the operation times
+                            {
+                                if (tmp != 0)
+                                    try //Division by zero exception
+                                    {
+                                        result = result / tmp;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        MessageBox.Show("Division by zero exception");
+
+                                    }
+
+                            }
+                            else
+                                result = tmp;
+                            num++;
+                            tmp = 0;
+                            DisplayBox.Text = result.ToString();
+                            break;
+
+                            // Stop the character from being entered into the control since it is non-numerical.
+                            e.Handled = true;
                     }
                 }
+            }
         }
 
         /// <summary>
@@ -504,6 +580,91 @@ namespace Lab2
                 if (control.GetType() == typeof(Panel))
                     GetAllControl(control, list);
             }
+        }
+
+        private void KeyOperator_Click(object sender, EventArgs e)
+        {
+            switch (operation)
+            {
+                case "+":
+                    if (opt != 0 && opt != 1)
+                    {
+                        calculate();
+                    }
+                    opt = 1;
+                    if (num != 0) // check the operation times
+                    {
+                        if (tmp != 0)
+                            result = result + tmp;
+                    }
+                    else
+                        result = tmp;
+                    num++;
+                    tmp = 0;
+                    DisplayBox.Text = result.ToString();
+                    break;
+                case "-":
+                    if (opt != 0 && opt != 2)
+                    {
+                        calculate();
+                    }
+                    opt = 2;
+                    if (num != 0) // check the operation times
+                    {
+                        if (tmp != 0)
+                            result = result - tmp;
+                    }
+                    else
+                        result = tmp;
+                    num++;
+                    tmp = 0;
+                    DisplayBox.Text = result.ToString();
+                    break;
+                case "*":
+                    if (opt != 0 && opt != 3)
+                    {
+                        calculate();
+                    }
+                    opt = 3;
+                    if (num != 0) // check the operation times
+                    {
+                        if (tmp != 0)
+                            result = result * tmp;
+                    }
+                    else
+                        result = tmp;
+                    num++;
+                    tmp = 0;
+                    DisplayBox.Text = result.ToString();
+                    break;
+                case "/":
+                    if (opt != 0 && opt != 4)
+                    {
+                        calculate();
+                    }
+                    opt = 4;
+                    if (num != 0) // check the operation times
+                    {
+                        if (tmp != 0)
+                            try //Division by zero exception
+                            {
+                                result = result / tmp;
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("Division by zero exception");
+
+                            }
+
+                    }
+                    else
+                        result = tmp;
+                    num++;
+                    tmp = 0;
+                    DisplayBox.Text = result.ToString();
+                    break;
+            }
+            DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
         }
     }
 }
