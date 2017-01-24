@@ -512,7 +512,6 @@ namespace Lab2
             }
 
         }
-
         private void GetAllControl(Control c, List<Control> list)
         {
             foreach (Control control in c.Controls)
@@ -523,18 +522,7 @@ namespace Lab2
                     GetAllControl(control, list);
             }
         }
-
-        //private void buttonAdd_Click(object sender, EventArgs e)
-        //{
-        //    SendKeys.Send("{ADD}");
-        //    result = float.Parse(DisplayBox.Text);
-        //    DisplayBox.Clear();
-        //    if (calculated == true)
-        //    {
-        //        calculated = false;
-        //    }
-        //}
-
-
+        
+        
     }
 }
