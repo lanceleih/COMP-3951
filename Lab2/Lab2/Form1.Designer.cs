@@ -51,7 +51,9 @@
             this.button5 = new System.Windows.Forms.Button();
             this.DisplayBox = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -144,7 +146,7 @@
             this.buttonAdd.TabIndex = 16;
             this.buttonAdd.Text = "+";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonOpeartor_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.buttonOperator_Click);
             // 
             // button13
             // 
@@ -155,7 +157,7 @@
             this.button13.TabIndex = 15;
             this.button13.Text = "-";
             this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.buttonOpeartor_Click);
+            this.button13.Click += new System.EventHandler(this.buttonOperator_Click);
             // 
             // button12
             // 
@@ -166,7 +168,7 @@
             this.button12.TabIndex = 14;
             this.button12.Text = "*";
             this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.buttonOpeartor_Click);
+            this.button12.Click += new System.EventHandler(this.buttonOperator_Click);
             // 
             // button11
             // 
@@ -177,7 +179,7 @@
             this.button11.TabIndex = 13;
             this.button11.Text = "/";
             this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.buttonOpeartor_Click);
+            this.button11.Click += new System.EventHandler(this.buttonOperator_Click);
             // 
             // button0
             // 
@@ -297,6 +299,7 @@
             this.DisplayBox.Location = new System.Drawing.Point(14, 32);
             this.DisplayBox.Margin = new System.Windows.Forms.Padding(2);
             this.DisplayBox.Name = "DisplayBox";
+            this.DisplayBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DisplayBox.Size = new System.Drawing.Size(546, 84);
             this.DisplayBox.TabIndex = 7;
             this.DisplayBox.Text = "";
@@ -307,11 +310,21 @@
             // 
             this.panel2.BackgroundImage = global::Lab2.Properties.Resources.pizzadoge;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(589, 32);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(452, 481);
             this.panel2.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 460);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(255, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "h - On, j - Off, k - C, l - CE, = - Equal";
             // 
             // Form1
             // 
@@ -328,6 +341,8 @@
             this.Name = "Form1";
             this.Text = "Math Calculator";
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -356,5 +371,6 @@
         private System.Windows.Forms.RichTextBox DisplayBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button ButtonOn;
+        private System.Windows.Forms.Label label1;
     }
 }

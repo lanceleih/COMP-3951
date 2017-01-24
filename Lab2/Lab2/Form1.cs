@@ -10,28 +10,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /// <summary>
-/// Purpose: Use Visual Studio to develop a calculator.
-/// Input: Numbers and operators by buttons or keyboards.
-/// Output: The result based on the number users input.
-/// Author:
-/// Date:
-/// Updated by:
-/// Date:
+/// Purpose: Develop a calculator to practice using visual studio.
+/// Input: /
+/// Output: /
+/// Author: Benjamin Hao, Lancelei Herradura
+/// Date: January 22, 2017
+/// Updated by: Benjamin Hao, Lancelei Herradura
+/// Date: January 23, 2017
 /// </summary>
 namespace Lab2
 {
     public partial class Form1 : Form
     {
         float result = 0; // Result value
-        float tmp = 0; // Temporary value
-        float i;      
+        float tmp = 0; // Temporary result
+        float i; // buffer, making input to next bit.
         int num = 0; // Opreation times
         int opt = 0; // This int determines if we need further culculation.
         string operation = ""; // Get operator value
         private bool nonNumberEntered = false; //// Boolean flag used to determine when a character other than a number is entered.
         bool awake = false; // Determine the calculator is on or off
-        
-         
+
+
         public Form1()
         {
             InitializeComponent();
@@ -41,13 +41,13 @@ namespace Lab2
         }
 
         /// <summary>
-        /// Purpose: Number button
-        /// Input:
-        /// Output:
-        /// Author:
-        /// Date:
-        /// Updated by:
-        /// Date:
+        /// Purpose: To get numbers.
+        /// Input: sender
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Benjamin Hao, Lancelei Herradura
+        /// Date: January 23, 2017
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -64,21 +64,33 @@ namespace Lab2
                 awake = true;
             }
 
-            DisplayBox.Focus();
-            if(button.Text == "CE" || button.Text == "C")
+            DisplayBox.Focus(); // focusing displaybox
+            DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
+            if (button.Text == "CE" || button.Text == "C")
             {
                 DisplayBox.Clear();
                 tmp = 0;
-            } else
+            }
+            else // display tmp value
             {
-                i = float.Parse(button.Text.ToString()); 
+                i = float.Parse(button.Text.ToString());
                 tmp = tmp * 10 + i;
                 DisplayBox.Text = tmp.ToString();
+                DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
+
             }
-            
+
         }
 
-
+        /// <summary>
+        /// Purpose: To calculate.
+        /// Input: void
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Benjamin Hao, Lancelei Herradura
+        /// Date: January 23, 2017
+        /// </summary>
         private void calculate()
         {
             if (num == 0) //determine if there is an operation; return 0 if none.
@@ -86,6 +98,7 @@ namespace Lab2
                 result = 0;
                 tmp = 0;
                 DisplayBox.Text = result.ToString();
+                DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
                 return;
             }
             // Determine result with the chosen operation
@@ -101,39 +114,47 @@ namespace Lab2
                     result *= tmp;
                     break;
                 case 4:
-                    result /= tmp;
+                    try // Division by zero exception
+                    {
+                        result /= tmp;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Division by zero exception");
+
+                    }
                     break;
                 default:
-                    return;                   
+                    return;
             }
             DisplayBox.Text = result.ToString();// Display the result.
+            DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
             opt = 0; //clear operation.
-            tmp = 0;
+            tmp = 0; // clear tmp value.
         }
 
-
-        //private void buttonEquals_Click(object sender, EventArgs e)
-        //{
-        //    // Calculate the value based on the operation and operand
-        //    calculate(float.Parse(DisplayBox.Text));
-        //    DisplayBox.Clear();
-        //    if (operation == "+" || operation == "-" || operation == "*" || operation == "/")
-        //    {
-        //        DisplayBox.Text += tmp.ToString();
-        //    }
-        //    else
-        //    {
-        //        DisplayBox.Text += result.ToString();
-        //    }
-        //    calculated = true;
-
-        //}
-
-        private void buttonOpeartor_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Purpose: To apply operator and determine if there are futher operations.
+        /// Input: sender
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Benjamin Hao
+        /// Date: January 23, 2017
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonOperator_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            operation = button.Text;
-
+            if ((string)sender == "+" || (string)sender == "-"|| (string)sender == "*"|| (string)sender == "/")
+            {// if input by keyboard
+                operation = (string)sender;
+            } else
+            {//if input by button
+                Button button = (Button)sender;
+                operation = button.Text;
+            }
+                
             switch (operation)
             {
                 case "+":
@@ -196,7 +217,16 @@ namespace Lab2
                     if (num != 0) // check the operation times
                     {
                         if (tmp != 0)
-                            result = result / tmp;
+                            try //Division by zero exception
+                            {
+                                result = result / tmp;
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("Division by zero exception");
+
+                            }
+                        
                     }
                     else
                         result = tmp;
@@ -205,17 +235,17 @@ namespace Lab2
                     DisplayBox.Text = result.ToString();
                     break;
             }
-
+            DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
         }
 
         /// <summary>
-        /// Purpose: 
-        /// Input:
-        /// Output:
-        /// Author:
-        /// Date:
-        /// Updated by:
-        /// Date:
+        /// Purpose: To calculate the sesult.
+        /// Input: sender
+        /// Output: void
+        /// Author: Benjamin Hao, Lancelei Herradura
+        /// Date: January 22, 2017
+        /// Updated by: Benjamin Hao, Lancelei Herradura
+        /// Date: January 23, 2017
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -227,12 +257,12 @@ namespace Lab2
 
         /// <summary>
         /// Purpose: KeyPress and KeyDown functions that allow user input by using keyboard.
-        /// Input: Can only input numbers, operators and "h", "j", "k", "l".
-        /// Output: Display the number
-        /// Author:
-        /// Date:
-        /// Updated by:
-        /// Date:
+        /// Input: sender
+        /// Output: void
+        /// Author: Microsoft
+        /// Date: June 21, 2011
+        /// Updated by: Benjamin Hao
+        /// Date: January 23, 2017
         /// Based on: https://msdn.microsoft.com/en-us/library/system.windows.forms.control.keypress(v=vs.110).aspx
         /// </summary>
         /// Handle the KeyDown event to determine the type of character entered into the control.
@@ -314,103 +344,39 @@ namespace Lab2
                 // Implement and execute operator and calculate the result
                 else
                 {
-                    tmp = float.Parse(DisplayBox.Text.ToString());
-
                     switch (e.KeyChar)
                     {
                         case '+':
-                            operation = "+";
+                            tmp = float.Parse(DisplayBox.Text.ToString());
+                            buttonOperator_Click("+",e);
+                            DisplayBox.SelectAll();
                             break;
                         case '-':
-                            operation = "-";
+                            tmp = float.Parse(DisplayBox.Text.ToString());
+                            buttonOperator_Click("-", e);
+                            DisplayBox.SelectAll();
                             break;
                         case '*':
-                            operation = "*";
+                            tmp = float.Parse(DisplayBox.Text.ToString());
+                            DisplayBox.SelectAll();
+                            buttonOperator_Click("*", e);
                             break;
                         case '/':
-                            operation = "/";
+                            tmp = float.Parse(DisplayBox.Text.ToString());
+                            buttonOperator_Click("/", e);
+                            DisplayBox.SelectAll();
                             break;
                         case '=':
-                            operation = "=";
-                            break;
-                    }
-                    switch (operation)
-                    {
-                        case "+":
-                            if (opt != 0 && opt != 1)
-                            {
-                                calculate();
-                            }
-                            opt = 1;
-                            if (num != 0) // check the operation times
-                            {
-                                if (tmp != 0)
-                                    result = result + tmp;
-                            }
-                            else
-                                result = tmp;
-                            num++;
-                            tmp = 0;
-                            DisplayBox.Text = result.ToString();
-                            break;
-                        case "-":
-                            if (opt != 0 && opt != 2)
-                            {
-                                calculate();
-                            }
-                            opt = 2;
-                            if (num != 0) // check the operation times
-                            {
-                                if (tmp != 0)
-                                    result = result - tmp;
-                            }
-                            else
-                                result = tmp;
-                            num++;
-                            tmp = 0;
-                            DisplayBox.Text = result.ToString();
-                            break;
-                        case "*":
-                            if (opt != 0 && opt != 3)
-                            {
-                                calculate();
-                            }
-                            opt = 3;
-                            if (num != 0) // check the operation times
-                            {
-                                if (tmp != 0)
-                                    result = result * tmp;
-                            }
-                            else
-                                result = tmp;
-                            num++;
-                            tmp = 0;
-                            DisplayBox.Text = result.ToString();
-                            break;
-                        case "/":
-                            if (opt != 0 && opt != 4)
-                            {
-                                calculate();
-                            }
-                            opt = 4;
-                            if (num != 0) // check the operation times
-                            {
-                                if (tmp != 0)
-                                    result = result / tmp;
-                            }
-                            else
-                                result = tmp;
-                            num++;
-                            tmp = 0;
-                            DisplayBox.Text = result.ToString();
+                            tmp = float.Parse(DisplayBox.Text.ToString());
+                            calculate();
+                            DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
                             break;
                     }
 
-                    DisplayBox.SelectAll();
+                    // Stop the character from being entered into the control since it is non-numerical.
+                    e.Handled = true;
+                    }
                 }
-                // Stop the character from being entered into the control since it is non-numerical.
-                e.Handled = true;
-            }
         }
 
         /// <summary>
@@ -473,7 +439,8 @@ namespace Lab2
                     if (control != ButtonOn)
                     {
                         control.Enabled = true;
-                    } else
+                    }
+                    else
                     {
                         control.Enabled = false;
                     }
@@ -507,7 +474,7 @@ namespace Lab2
             {
                 if (control.GetType() == typeof(Button))
                 {
-                    if(control != ButtonOn)
+                    if (control != ButtonOn)
                         control.Enabled = false;
                     else
                         control.Enabled = true;
@@ -538,7 +505,5 @@ namespace Lab2
                     GetAllControl(control, list);
             }
         }
-        
-        
     }
 }
