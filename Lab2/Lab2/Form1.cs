@@ -9,17 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Purpose: Use Visual Studio to develop a calculator.
+/// Input: Numbers and operators by buttons or keyboards.
+/// Output: The result based on the number users input.
+/// Author:
+/// Date:
+/// Updated by:
+/// Date:
+/// </summary>
 namespace Lab2
 {
     public partial class Form1 : Form
     {
-        float result = 0; // result value
-        float tmp = 0; //temporary value      
-        int num = 0; // opreation times
-        int opt = 0; // this int determines if we need further culculation.
-        string operation = ""; // get operator
-        //bool calculated = false;
-        bool awake = false;
+        float result = 0; // Result value
+        float tmp = 0; // Temporary value
+        float i;      
+        int num = 0; // Opreation times
+        int opt = 0; // This int determines if we need further culculation.
+        string operation = ""; // Get operator value
+        private bool nonNumberEntered = false; //// Boolean flag used to determine when a character other than a number is entered.
+        bool awake = false; // Determine the calculator is on or off
         
          
         public Form1()
@@ -28,10 +38,19 @@ namespace Lab2
 
             // Disable buttons before turning calculator on
             turn_OffCalculator();
-
-
         }
 
+        /// <summary>
+        /// Purpose: Number button
+        /// Input:
+        /// Output:
+        /// Author:
+        /// Date:
+        /// Updated by:
+        /// Date:
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -42,7 +61,6 @@ namespace Lab2
                 result = 0;
                 opt = 0;
                 num = 0;
-                //calculated = false;
                 awake = true;
             }
 
@@ -53,30 +71,22 @@ namespace Lab2
                 tmp = 0;
             } else
             {
-                tmp = float.Parse(button.Text.ToString());
+                i = float.Parse(button.Text.ToString()); 
+                tmp = tmp * 10 + i;
                 DisplayBox.Text = tmp.ToString();
             }
             
         }
 
         /// <summary>
-        /// This function uses sender to get operations.
+        /// Purpose: 
+        /// Input:
+        /// Output:
+        /// Author:
+        /// Date:
+        /// Updated by:
+        /// Date:
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //public void functions_Click(object sender, EventArgs e)
-        //{
-        //    Button button = (Button)sender;
-        //    operation = button.Text;
-        //    DisplayBox.Clear();
-        //    if(calculated == true)
-        //    {
-        //        calculated = false;
-        //    }
-            
-        //}
-
-
         private void calculate()
         {
             if (num == 0) //determine if there is an operation; return 0 if none.
@@ -109,24 +119,17 @@ namespace Lab2
             tmp = 0;
         }
 
-
-        //private void buttonEquals_Click(object sender, EventArgs e)
-        //{
-        //    // Calculate the value based on the operation and operand
-        //    calculate(float.Parse(DisplayBox.Text));
-        //    DisplayBox.Clear();
-        //    if (operation == "+" || operation == "-" || operation == "*" || operation == "/")
-        //    {
-        //        DisplayBox.Text += tmp.ToString();
-        //    }
-        //    else
-        //    {
-        //        DisplayBox.Text += result.ToString();
-        //    }
-        //    calculated = true;
-
-        //}
-
+        /// <summary>
+        /// Purpose: 
+        /// Input:
+        /// Output:
+        /// Author:
+        /// Date:
+        /// Updated by:
+        /// Date:
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOpeartor_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -206,6 +209,17 @@ namespace Lab2
 
         }
 
+        /// <summary>
+        /// Purpose: 
+        /// Input:
+        /// Output:
+        /// Author:
+        /// Date:
+        /// Updated by:
+        /// Date:
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEqual_Click(object sender, EventArgs e)
         {
             calculate();
@@ -213,15 +227,16 @@ namespace Lab2
 
 
         /// <summary>
-        /// KeyPress and KeyDown functions that allow user input by using keyboard.
-        /// Can only input numbers and "h", "j", "k", "l".
-        /// Partial functions is copied from website.
+        /// Purpose: KeyPress and KeyDown functions that allow user input by using keyboard.
+        /// Input: Can only input numbers, operators and "h", "j", "k", "l".
+        /// Output: Display the number
+        /// Author:
+        /// Date:
+        /// Updated by:
+        /// Date:
+        /// Based on: https://msdn.microsoft.com/en-us/library/system.windows.forms.control.keypress(v=vs.110).aspx
         /// </summary>
-
-        // Boolean flag used to determine when a character other than a number is entered.
-        private bool nonNumberEntered = false;
-
-        //// Handle the KeyDown event to determine the type of character entered into the control.
+        /// Handle the KeyDown event to determine the type of character entered into the control.
         private void DisplayBox_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             // Initialize the flag to false.
@@ -259,7 +274,6 @@ namespace Lab2
             {
                 DisplayBox.Clear();
                 result = 0;
-                //calculated = false;
                 awake = true;
             }
             // Check for the flag being set in the KeyDown event.
@@ -460,17 +474,5 @@ namespace Lab2
             awake = false;
 
         }
-        //private void buttonAdd_Click(object sender, EventArgs e)
-        //{
-        //    SendKeys.Send("{ADD}");
-        //    result = float.Parse(DisplayBox.Text);
-        //    DisplayBox.Clear();
-        //    if (calculated == true)
-        //    {
-        //        calculated = false;
-        //    }
-        //}
-
-
     }
 }

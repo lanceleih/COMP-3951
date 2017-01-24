@@ -300,8 +300,6 @@
             this.DisplayBox.Size = new System.Drawing.Size(546, 84);
             this.DisplayBox.TabIndex = 7;
             this.DisplayBox.Text = "";
-            this.DisplayBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DisplayBox_KeyDown);
-            this.DisplayBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DisplayBox_KeyPress);
             // 
             // panel2
             // 
@@ -326,7 +324,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Math Calculator";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
