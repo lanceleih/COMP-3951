@@ -507,11 +507,23 @@ namespace Lab2
                         control.Enabled = false;
                     else
                         control.Enabled = true;
-
                 }
             }
 
         }
+
+        /// <summary>
+        /// Purpose: Gets all controls of the form and puts it in the list specified by user.
+        /// Input: Control c, List<Control> list
+        /// Output: void
+        /// Author: Hashi
+        /// Date: June 21, 2011
+        /// Updated by: Lancelei Herradura
+        /// Date: January 23, 2017
+        /// Based on: http://stackoverflow.com/questions/6421292/how-can-i-get-the-button-controls-in-windows-form-panel
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="list"></param>
         private void GetAllControl(Control c, List<Control> list)
         {
             foreach (Control control in c.Controls)
