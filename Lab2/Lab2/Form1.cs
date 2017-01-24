@@ -292,7 +292,6 @@ namespace Lab2
         // characters from entering the control.
         private void DisplayBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-
             if (awake == false)
             {
                 DisplayBox.Clear();
@@ -318,10 +317,12 @@ namespace Lab2
                     {
                         case 'h': // on button
                             turn_OnCalculator();
+                            DisplayBox.Text = "0";
                             awake = false;
                             break;
                         case 'j': // off button
                             turn_OffCalculator();
+                            DisplayBox.Text = "Off";
                             break;
                         case 'k': // C Function
                             DisplayBox.Clear();
@@ -334,6 +335,9 @@ namespace Lab2
                             tmp = 0;
                             break;
                     }
+                    // Stop the character from being entered into the control since it is non-numerical.
+                    e.Handled = true;
+
                 }
                 // Implement and execute operator and calculate the result
                 else
@@ -366,7 +370,6 @@ namespace Lab2
                             DisplayBox.SelectionStart = DisplayBox.Text.Length; // setting cursor at the end of text
                             break;
                     }
-                   
 
                     // Stop the character from being entered into the control since it is non-numerical.
                     e.Handled = true;
