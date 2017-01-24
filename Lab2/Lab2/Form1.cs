@@ -496,6 +496,7 @@ namespace Lab2
         private void turn_OffCalculator()
         {
             panel2.Visible = false;
+            DisplayBox.Text = "";
             List<Control> list = new List<Control>();
 
             // Retrieve all controls and put into the lsit
